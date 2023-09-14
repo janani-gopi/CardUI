@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
-import React , {useState} from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import CardDropdown from "./CardDropdown";
 
 const Card = () => {
-  //state initialization for the visibility of dropdown  
-  const [isdropdownVisible , setDropdown] = useState(false) 
+  //state initialization for the visibility of dropdown
+  const [isdropdownVisible, setDropdown] = useState(false);
   return (
     <View style={styles.container}>
       <View style={styles.textcontainer}>
@@ -25,20 +26,36 @@ const Card = () => {
           <Text style={styles.smalltext}>Status</Text>
           <View style={styles.flexcontainer}>
             <Text style={styles.bulletin}>{`\u2022`}</Text>
-            <Text style={{marginTop:6}}>Re-routed</Text>
-            <MaterialIcons
-              name="keyboard-arrow-down"
-              size={25}
-              color={"orange"}
-              style={{marginTop:3}}
-            />
+            <Text style={{ marginTop: 6 }}>Re-routed</Text>
+            <TouchableOpacity
+              onPress={() => {
+                setDropdown((prev) => !prev);
+              }}
+            >
+              {isdropdownVisible ? (
+                <MaterialIcons
+                  name="keyboard-arrow-up"
+                  size={25}
+                  color={"orange"}
+                  style={{ marginTop: 3 }}
+                />
+              ) : (
+                <MaterialIcons
+                  name="keyboard-arrow-down"
+                  size={25}
+                  color={"orange"}
+                  style={{ marginTop: 3 }}
+                />
+              )}
+            </TouchableOpacity>
           </View>
         </View>
       </View>
       <View style={styles.datecontainer}>
         <Text style={styles.date}>23 july 2023</Text>
-        <Text  style={styles.time}>3:30 pm</Text>
+        <Text style={styles.time}>3:30 pm</Text>
       </View>
+      {isdropdownVisible && <CardDropdown />}
     </View>
   );
 };
@@ -48,14 +65,14 @@ export default Card;
 const styles = StyleSheet.create({
   container: {
     width: "96%",
-    height: 120,
+    height: "auto",
     elevation: 5,
     backgroundColor: "white",
     borderRadius: 10,
     borderLeftWidth: 10,
     borderLeftColor: "tomato",
     paddingVertical: 15,
-    paddingHorizontal:10
+    paddingHorizontal: 10,
   },
   textcontainer: {
     display: "flex",
@@ -66,7 +83,7 @@ const styles = StyleSheet.create({
   smalltext: {
     fontSize: 12,
     marginBottom: 5,
-    color: "#e5e5e5",
+    color: "#afb1ae",
   },
   verticleline: {
     borderWidth: 1,
@@ -75,33 +92,33 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 10,
   },
-  flexcontainer:{
-    display:"flex",
-    flexDirection:"row",
-  }, 
-  text:{
-   paddingRight:19
+  flexcontainer: {
+    display: "flex",
+    flexDirection: "row",
   },
-  datecontainer:{
-    display:"flex",
-    flexDirection:"row",
-    paddingTop:10
+  text: {
+    paddingRight: 19,
+  },
+  datecontainer: {
+    display: "flex",
+    flexDirection: "row",
+    paddingTop: 10,
   },
   date: {
     fontSize: 11,
     marginBottom: 5,
-    color: "#e5e5e5",
-    borderRightWidth:1,
-    paddingRight:8,
-    borderRightColor:"#e5e5e5"
+    color: "#afb1ae",
+    borderRightWidth: 1,
+    paddingRight: 8,
+    borderRightColor: "#e5e5e5",
   },
-  time:{
-    fontSize:11,
-    color:"#e5e5e5",
-    paddingLeft:10
+  time: {
+    fontSize: 11,
+    color: "#afb1ae",
+    paddingLeft: 10,
   },
-  bulletin:{
-    fontSize:25,
-    color:"pink"
-  }
+  bulletin: {
+    fontSize: 25,
+    color: "pink",
+  },
 });
