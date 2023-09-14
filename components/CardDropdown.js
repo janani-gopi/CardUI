@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { lastChild } from "@react-native-material/core";
 
 const CardDropdown = () => {
   return (

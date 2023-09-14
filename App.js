@@ -1,22 +1,20 @@
-import { View, Text,StyleSheet } from 'react-native'
-import React from 'react'
-import Card from './Card'
+import React from "react";
+import Card from "./components/Card";
+import Navigation from "./screens/Navigation";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  
   return (
-    <View style={styles.container}>
-      <Card/>
-    </View>
-  )
-}
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Card" component={Card} />
+        <Stack.Screen name="Navigation" component={Navigation} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
-export default App
-
-const styles= StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems:"center",
-    justifyContent:"center"
-  }
-})
+export default App;
